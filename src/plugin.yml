@@ -1,0 +1,5 @@
+name: SkillAPI-ClickComboIndicator
+version: 1.0
+author: DJ_FluXxX
+main: com.ToA.ClickComboText.ClickComboText
+depend: [ProtocolLib, SkillAPI]
