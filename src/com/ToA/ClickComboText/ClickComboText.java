@@ -39,36 +39,39 @@ public class ClickComboText extends JavaPlugin implements Listener
     	String pName = p.getName();
     	ItemMessage im = new ItemMessage(this);
     	p.sendMessage("Variables initialized!");
+    	try{
     	if (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
         	p.sendMessage("LEFT-CLICK");
     		if (ca == 0)
     		{
     			click.put(pName, "LEFT");
     			String playerClick = click.get(pName);
-    			im.sendMessage(p, playerClick, 5);
+    			im.sendMessage(p, playerClick, 2);
     			addClicks(p);
+    			e.setCancelled(true);
     		}
     		else if (ca > 0 && ca < 5)
     		{
     			String prevClicks = click.get(pName);
     			String newClicks = prevClicks + " - " + "LEFT";
     			click.put(pName, newClicks);
-    			im.sendMessage(p, newClicks, 5);
+    			im.sendMessage(p, newClicks, 2);
     			addClicks(p);
     			int newCA = clickAmount(p);
     			if (newCA == 4)
     			{
     				click.remove(pName);
     			}
+    			e.setCancelled(true);
     		}
     		else
     		{
     			click.put(pName, "LEFT");
     			String playerClick = click.get(pName);
-    			im.sendMessage(p, playerClick, 5);
+    			im.sendMessage(p, playerClick, 2);
     			setClick(p, 1);
+    			e.setCancelled(true);
     		}
-    		
     	}
     	else if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)
 		{
@@ -76,30 +79,38 @@ public class ClickComboText extends JavaPlugin implements Listener
     		{
     			click.put(pName, "RIGHT");
     			String playerClick = click.get(pName);
-    			im.sendMessage(p, playerClick, 5);
+    			im.sendMessage(p, playerClick, 2);
     			addClicks(p);
+    			e.setCancelled(true);
     		}
     		else if (ca > 0 && ca < 5)
     		{
     			String prevClicks = click.get(pName);
     			String newClicks = prevClicks + " - " + "RIGHT";
     			click.put(pName, newClicks);
-    			im.sendMessage(p, newClicks, 5);
+    			im.sendMessage(p, newClicks, 2);
     			addClicks(p);
     			int newCA = clickAmount(p);
     			if (newCA == 4)
     			{
     				click.remove(pName);
     			}
+    			e.setCancelled(true);
     		}
     		else
     		{
     			click.put(pName, "RIGHT");
     			String playerClick = click.get(pName);
-    			im.sendMessage(p, playerClick, 5);
+    			im.sendMessage(p, playerClick, 2);
     			setClick(p, 1);
+    			e.setCancelled(true);
     		}
 		}
+    	}
+    	catch (NullPointerException e2)
+    	{
+    		e2.printStackTrace();
+    	}
     }
     
     public int clickAmount(Player player)
