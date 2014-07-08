@@ -46,21 +46,27 @@ public class ClickComboHistory {
     	String concatString = null;
     	for (int i = 0 ; i < clicks.size() ; i++)
     	{
-    		if (clicks.get(0).isEmpty())
+    		if (i == 0)
     		{
-    			concatString = null;
-    		}
-    		else
-    		{
-    			if (clicks.get(0).equals("LEFT") || clicks.get(0).equals("RIGHT"))
+    			if (!clicks.get(i).isEmpty())
     			{
-    				concatString = clicks.get(i);
+	    			if (clicks.get(0).equals("LEFT") || clicks.get(0).equals("RIGHT"))
+	    			{
+	    				concatString = clicks.get(0);
+	    			}
+    			else
+    			{ 
+    				concatString = null;
     			}
-    			else if (clicks.get(i).equals("LEFT") || clicks.get(i).equals("RIGHT"))
-    			{
-    				concatString = concatString + " - " + clicks.get(i);
     			}
     		}
+			else
+			{
+				if (clicks.get(i).equals("LEFT") || clicks.get(i).equals("RIGHT"))
+				{
+					concatString = concatString + " - " + clicks.get(i);
+				}
+			}
     	}
     	return concatString;
     }
