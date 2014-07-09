@@ -10,7 +10,8 @@ public class ClickComboHistory {
 
     private final ArrayList<MouseClick> entries = new ArrayList<MouseClick>();
     private final ArrayList<String> clicks = new ArrayList<String>();
-    private final ClickComboText cct;
+    @SuppressWarnings("unused")
+	private final ClickComboText cct;
     
     private long timer;
     
@@ -25,6 +26,7 @@ public class ClickComboHistory {
     	clicks.add(String.valueOf(click));
     	updateEntries();
         if (entries.size() == 0) entries.add(click);
+        if (clicks.size() == 0) clicks.add(String.valueOf(click));
     }
     
     private void updateEntries()
@@ -44,27 +46,20 @@ public class ClickComboHistory {
     public String concatStrings()
     {
     	String concatString = null;
-    	for (int i = 0 ; i < clicks.size() ; i++)
+    	for (int i = 1 ; i <= clicks.size() ; i++)
     	{
-    		if (i == 0)
+    		if (i == 1)
     		{
-    			if (!clicks.get(i).isEmpty())
+    			if (clicks.get(0).equals("LEFT") || clicks.get(0).equals("RIGHT"))
     			{
-	    			if (clicks.get(0).equals("LEFT") || clicks.get(0).equals("RIGHT"))
-	    			{
-	    				concatString = clicks.get(0);
-	    			}
-    			else
-    			{ 
-    				concatString = null;
-    			}
+    				concatString = clicks.get(0);
     			}
     		}
 			else
 			{
-				if (clicks.get(i).equals("LEFT") || clicks.get(i).equals("RIGHT"))
+				if (clicks.get(i-1).equals("LEFT") || clicks.get(i-1).equals("RIGHT"))
 				{
-					concatString = concatString + " - " + clicks.get(i);
+					concatString = concatString + " - " + clicks.get(i-1);
 				}
 			}
     	}

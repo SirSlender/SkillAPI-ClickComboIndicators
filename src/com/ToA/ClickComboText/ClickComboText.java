@@ -45,7 +45,7 @@ public class ClickComboText extends JavaPlugin implements Listener
 	    	{
 	        	pch.addClick(MouseClick.LEFT);
 	        	im.sendMessage(p, pch.concatStrings(), 1);
-	        	if (pch.clickSize() >= 4)
+	        	if (pch.clickSize() == 4)
 	        	{
 	        		pch.clearClicks();
 	        	}
@@ -55,7 +55,7 @@ public class ClickComboText extends JavaPlugin implements Listener
 			{
 	    		pch.addClick(MouseClick.RIGHT);
 	        	im.sendMessage(p, pch.concatStrings(), 1);
-	        	if (pch.clickSize() >= 4)
+	        	if (pch.clickSize() == 4)
 	        	{
 	        		pch.clearClicks();
 	        	}
@@ -68,7 +68,7 @@ public class ClickComboText extends JavaPlugin implements Listener
     	}
     }
 
-    @EventHandler (priority = EventPriority.MONITOR, ignoreCancelled = true)
+    @EventHandler (priority = EventPriority.MONITOR)
     public void onQuit(PlayerQuitEvent event) {
         history.remove(event.getPlayer().getName());
     }
